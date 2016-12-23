@@ -1,25 +1,25 @@
 var signetChecker = (function () {
     'use strict';
-    
+
     return function (registrar) {
 
-        function checkType (typeDef){
+        function checkType(typeDef) {
             return typeof registrar.get(typeDef.type) === 'function';
         }
 
-        function concat (resultList, list){
+        function concat(resultList, list) {
             return resultList.concat(list);
         }
 
-        function not (predicate){
-            return function (value){
+        function not(predicate) {
+            return function (value) {
                 return !predicate(value);
             }
         }
 
-        function checkSignature (ast){
-            var failedTypes =  ast.reduce(concat, [])
-                                  .filter(not(checkType));
+        function checkSignature(ast) {
+            var failedTypes = ast.reduce(concat, [])
+                .filter(not(checkType));
 
             return failedTypes.length > 0 ? failedTypes : null;
         }
@@ -33,4 +33,6 @@ var signetChecker = (function () {
 
 })();
 
-module.exports = signetChecker;
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = signetChecker;
+}
