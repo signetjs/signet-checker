@@ -4,7 +4,11 @@ var signetChecker = (function () {
     return function (registrar) {
 
         function checkType(typeDef) {
-            return typeof registrar.get(typeDef.type) === 'function';
+            try {
+                return typeof registrar.get(typeDef.type) === 'function';
+            } catch (e) {
+                return false;
+            }
         }
 
         function concat(resultList, list) {
