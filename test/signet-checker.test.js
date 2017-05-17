@@ -3,7 +3,7 @@
 var assert = require('chai').assert;
 var signetChecker = require('../index');
 var signetRegistrar = require('signet-registrar');
-var signetParser = require('signet-parser');
+var signetParser = require('signet-parser')();
 var approvals = require('./utils/approvals.config.js');
 
 function prettyJson (value){
